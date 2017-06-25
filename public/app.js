@@ -40,7 +40,7 @@ var nameList = function(munros){
   ul.appendChild(li);
 })
 
-
+var munroArray =[]
 var ShowDetails = function(){
   var selectedMunro = munros[this.value]
   selectedMunroLat =selectedMunro.latlng_lat
@@ -49,9 +49,12 @@ var ShowDetails = function(){
   var jsonString = JSON.stringify(newCoords)
   localStorage.setItem('newCoords', jsonString); 
 
+  munroArray.push(selectedMunro.height)
+  new PieChart('selected Munros', selectedMunro.name, munroArray);
+
   var textBox = document.createElement('p')
   document.body.appendChild(textBox)
-  textBox.innerText = "Name: " + selectedMunro.name + "\nHeight:" + selectedMunro.height + "m"
+  textBox.innerText = "Name: " + selectedMunro.name + "\nHeight:" + selectedMunro.height + "m" + "\n Region: " + selectedMunro.region
    
   var jsonString = JSON.stringify(selectedMunro)
   localStorage.setItem('selectedMunro', jsonString); 
